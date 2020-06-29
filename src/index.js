@@ -27,12 +27,25 @@ function* fetchAnimals (action) {
     }
 }
 
+//this function add a new animal to the zoo
+function* addToZoo (action) {
+    try{
+        yield axios.post("/zoo", action.payload);
+        console.log("success sending the new animal to the server");
+        yield put({ type: "GET_ZOO_ANIMALS" }); //refresh animal list
+    }catch(error){
+        console.log("Error posting new animal in the database");
+    }
+
+}
+
 
 
 // Your saga should listen for the action type of `GET_ZOO_ANIMALS`
 function* rootSaga() {
     // YOUR CODE HERE
     yield takeEvery('GET_ZOO_ANIMALS', fetchAnimals);
+    yield takeEvery('ADD_ANIMAL', addToZoo);
 }
 
 // Create sagaMiddleware

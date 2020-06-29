@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AnimalListItem from '../AnimalListItem/AnimalListItem';
+import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 // DO NOT MODIFY THIS FILE FOR BASE MODE!
 
@@ -14,6 +16,13 @@ class AnimalList extends Component {
     // Renders the list of animals
     render() {
         return (
+            <div>
+            <Link to="/form"> 
+            <Button variant="contained" color="primary" size="large">
+              Add Animal
+            </Button>
+          </Link>
+            
             <table className="AnimalList">
                 <thead>
                     <tr><th>Species</th><th>Class</th></tr>
@@ -25,6 +34,8 @@ class AnimalList extends Component {
                     })}
                 </tbody>
             </table>
+            </div>
+            
         );
     }
 }

@@ -17,4 +17,26 @@ router.get('/', (req, res) => {
         });
 });
 
+
+
+
+router.post('/', (req, res) => {
+    // YOUR CODE HERE
+    const newAnimal = req.body;
+
+    const queryText = `INSERT INTO "class" ("class_name") VALUES ($1)
+                       INSERT INTO "species" ("species_name");`;
+
+    const queryValue = [newAnimal.class, newAnimal.species];
+        pool.query(queryText, queryValue).then((result) => {
+            res.sendStatus(201);
+        })
+        .catch((error) => {
+            console.log(`Error on query ${error}`);
+            res.sendStatus(500);
+        });
+});
+
+
+
 module.exports = router;
